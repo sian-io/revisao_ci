@@ -23,4 +23,13 @@ jobs:
       
       - name: rodando os testes
         run: pytest
-        
+      
+      - name: Deploy to Render
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            --data '{"serviceId": "usr-crkd6qhu0jms73bk598g"}' \
+            https://api.render.com/v1/services/usr-crkd6qhu0jms73bk598g/deploys
+
